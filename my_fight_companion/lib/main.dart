@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: const MyHomePage(title: 'Fighting Dojo'),
+      home: const MyHomePage(title: 'My Fight Companion'),
     );
   }
 }
@@ -91,12 +92,105 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Search',
+                  ),
+                ))
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'All notes',
+                      )),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Character M.U.',
+                      )),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Player M.U.',
+                      )),
+                ),
+                const SizedBox(width: 10),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Drafts',
+                      )),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Combo List',
+                      )),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        textAlign: TextAlign.center,
+                        'Tech Mechanics',
+                      )),
+                ),
+                const SizedBox(width: 10),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Custom',
+                      )),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Custom',
+                      )),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: _incrementCounter,
+                      child: const Text(
+                        'Custom',
+                      )),
+                ),
+                const SizedBox(width: 10),
+              ],
             ),
           ],
         ),
