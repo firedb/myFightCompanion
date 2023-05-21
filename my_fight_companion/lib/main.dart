@@ -18,9 +18,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Fight Companion',
-      theme: ThemeData(useMaterial3: false,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black), scaffoldBackgroundColor: Colors.amber
-      ),
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          scaffoldBackgroundColor: Colors.black),
       home: const MyHomePage(title: 'My Fight Companion'),
     );
   }
