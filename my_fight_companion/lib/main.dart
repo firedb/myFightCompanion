@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'note_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -95,11 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Expanded(
+               Expanded(
                     child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
+                    floatingLabelAlignment: FloatingLabelAlignment.center,
+                    hintText: 'Click Here...',
                     labelText: 'Search',
+                    labelStyle: TextStyle (color: Colors.cyan, fontWeight: FontWeight.bold),
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
                 ))
               ],
@@ -109,7 +115,13 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NoteListPage()),
+                        );
+                      },
                       child: const Text(
                         'All notes',
                       )),
