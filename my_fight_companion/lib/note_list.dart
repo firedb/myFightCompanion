@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NoteListPage extends StatefulWidget {
-  const NoteListPage({Key? key}) : super(key: key);
+  const NoteListPage(String s, {Key? key}) : super(key: key);
+  final String searchKeyword = 'testing';
 
   @override
-  _NoteListPageState createState() => _NoteListPageState();
+  State<NoteListPage> createState() => _NoteListPageState();
 }
 
 class _NoteListPageState extends State<NoteListPage> {
@@ -14,8 +15,8 @@ class _NoteListPageState extends State<NoteListPage> {
       appBar: AppBar(
         title: const Text('New Page'),
       ),
-      body: const Center(
-        child: Text('This is a new page!'),
+      body: Center(
+        child: Text('This is a new page!', style: TextStyle(color: Colors.white),),
       ),
     );
   }
