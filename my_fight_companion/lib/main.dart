@@ -97,14 +97,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-               Expanded(
+                Expanded(
                     child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     floatingLabelAlignment: FloatingLabelAlignment.center,
                     hintText: 'Click Here...',
                     labelText: 'Search',
-                    labelStyle: TextStyle (color: Colors.cyan, fontWeight: FontWeight.bold),
+                    labelStyle: TextStyle(
+                        color: Colors.cyan, fontWeight: FontWeight.bold),
                     fillColor: Colors.white,
                     filled: true,
                   ),
@@ -116,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                   child: ElevatedButton(
+                      //need to research to understand syntax logic
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -209,11 +211,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => const NoteCreationPage()));},
-          
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const NoteCreationPage()));
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
