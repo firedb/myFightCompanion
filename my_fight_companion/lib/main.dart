@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_fight_companion/note_creation.dart';
 import 'note_list.dart';
 
 void main() {
@@ -208,7 +209,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => const NoteCreationPage()));},
+          
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
