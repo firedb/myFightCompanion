@@ -96,14 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-               Expanded(
+                Expanded(
                     child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     floatingLabelAlignment: FloatingLabelAlignment.center,
                     hintText: 'Click Here...',
                     labelText: 'Search',
-                    labelStyle: TextStyle (color: Colors.cyan, fontWeight: FontWeight.bold),
+                    labelStyle: TextStyle(
+                        color: Colors.cyan, fontWeight: FontWeight.bold),
                     fillColor: Colors.white,
                     filled: true,
                   ),
@@ -119,7 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => NoteListPage('all')),
+                              builder: (context) =>
+                                  NoteListPage(searchKeyword: 'all')),
                         );
                       },
                       child: const Text(

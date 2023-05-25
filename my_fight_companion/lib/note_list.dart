@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class NoteListPage extends StatefulWidget {
-  const NoteListPage(String s, {Key? key}) : super(key: key);
-  final String searchKeyword = 'testing';
+  final String searchKeyword;
+
+  const NoteListPage({required this.searchKeyword, Key? key}) : super(key: key);
 
   @override
   State<NoteListPage> createState() => _NoteListPageState();
@@ -16,7 +17,10 @@ class _NoteListPageState extends State<NoteListPage> {
         title: const Text('New Page'),
       ),
       body: Center(
-        child: Text('This is a new page!', style: TextStyle(color: Colors.white),),
+        child: Text(
+          'Search keyword: ${widget.searchKeyword}',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
