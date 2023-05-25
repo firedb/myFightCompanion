@@ -55,6 +55,9 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
           ],
         ),
       ),
+    floatingActionButton: FloatingActionButton(onPressed: (){},
+    tooltip: 'Save',
+    child: const Icon(Icons.sailing),),
     );
   }
 }
