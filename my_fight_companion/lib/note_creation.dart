@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 class NoteCreationPage extends StatefulWidget {
   const NoteCreationPage({Key? key}) : super(key: key);
