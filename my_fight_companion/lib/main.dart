@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  NoteListPage(searchKeyword: 'all')),
+                                  const NoteListPage(searchKeyword: 'all')),
                         );
                       },
                       child: const Text(
