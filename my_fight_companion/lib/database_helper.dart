@@ -31,20 +31,26 @@ class DatabaseHelper {
           'CREATE TABLE testbase (id INTEGER PRIMARY KEY, notetitle TEXT, notecontent TEXT, date INTEGER)');
       await db.execute(
           'INSERT INTO testbase (notetitle, notecontent, date) VALUES("Title Here", "Your content here..", 01011980)');
-          await db.execute(
+      await db.execute(
           'INSERT INTO testbase (notetitle, notecontent, date) VALUES("2nd Title Here", "2nd Your content here..", 02021980)');
     });
   }
 
   Future<void> saveNote(String note) async {
-
     final db = await database;
 
-var map = new Map()/{
-      title:"placeholder title",
+    Map<String, Object?> mapExample = {
+      "title": "placeholder title",
+      "notestuff": "placeholder note content",
+      "date": 45,
+    };
+    mapExample = {
+      "title": "placeholder title",
+      "notestuff": "placeholder note content",
+      "date": 45,
     };
 
-    await db?.insert('testbase', <'notetitle': 'placeholder text'>);
+    await db?.insert('testbase', mapExample);
   }
 
   Future<List<Map<String, dynamic>>?> getNotes() async {
