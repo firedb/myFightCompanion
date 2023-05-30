@@ -12,7 +12,8 @@ class NoteListPage extends StatefulWidget {
 
 class _NoteListPageState extends State<NoteListPage> {
 
-List<String> notes = [];
+//dynamic vs object. Using dynamic for now, but should opt for a safer statically typed
+List<Map<String, dynamic>>? notes = [];
 
   @override
   void initState() {
@@ -22,7 +23,7 @@ List<String> notes = [];
 
   Future<void> fetchNotes() async {
     DatabaseHelper databaseHelper = DatabaseHelper();
-    List<String> fetchedNotes = await databaseHelper.getNotes();
+    List<Map<String, dynamic>>? fetchedNotes = await databaseHelper.getNotes();
 
     setState(() {
       notes = fetchedNotes;
@@ -47,12 +48,24 @@ List<String> notes = [];
               style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 16),
-            Expanded(
+             Expanded(
               child: ListView.builder(
-                itemCount: notes.length,
+                itemCount: notes?.length,
                 itemBuilder: (context, index) {
+                  // Access the notetitle, notecontent, and date from the map
+                  String title = notes![index]['notetitle'];
+                  String content = notes![index]['notecontent'];
+                  String date = notes![index]['date'].toString();
+
                   return ListTile(
-                    title: Text(notes[index], style: const TextStyle(color: Colors.white),),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(title, style: const TextStyle(color: Colors.white)),
+                        Text(content, style: const TextStyle(color: Colors.white)),
+                        Text(date, style: const TextStyle(color: Colors.white)),
+                      ],
+                    ),
                   );
                 },
               ),

@@ -22,31 +22,39 @@ class DatabaseHelper {
     // and other options as per your requirement
 
     String dbPath = await getDatabasesPath();
-    String pathToDatabase = path.join(dbPath, 'fightlog.db');
+    String pathToDatabase = path.join(dbPath, 'testbase.db');
 
     return await openDatabase(pathToDatabase, version: 1,
         onCreate: (Database db, int version) async {
       // When creating the db, create the table
       await db.execute(
-          'CREATE TABLE fightlog (id INTEGER PRIMARY KEY, notetitle TEXT, notecontent TEXT, date INTEGER)');
+          'CREATE TABLE testbase (id INTEGER PRIMARY KEY, notetitle TEXT, notecontent TEXT, date INTEGER)');
       await db.execute(
-          'INSERT INTO fightlog (notetitle, notecontent, date) VALUES("Title Here", "Your content here..", 01011980)');
+          'INSERT INTO testbase (notetitle, notecontent, date) VALUES("Title Here", "Your content here..", 01011980)');
+          await db.execute(
+          'INSERT INTO testbase (notetitle, notecontent, date) VALUES("2nd Title Here", "2nd Your content here..", 02021980)');
     });
   }
 
   Future<void> saveNote(String note) async {
+
     final db = await database;
-    await db?.insert('notes', {'note': note});
+
+var map = new Map()/{
+      title:"placeholder title",
+    };
+
+    await db?.insert('testbase', <'notetitle': 'placeholder text'>);
   }
 
- Future<List<String>> getNotes() async {
+  Future<List<Map<String, dynamic>>?> getNotes() async {
     final db = await database;
-    List<Map<String, dynamic>>? noteList = await db?.query('fightlog');
+    List<Map<String, dynamic>>? noteList = await db?.query('testbase');
+    return noteList;
+    //List<String> fetchedNotes =
+    //    noteList!.map((note) => note['notecontent'] as String).toList();
 
-    List<String> fetchedNotes =
-        noteList!.map((note) => note['notecontent'] as String).toList();
-
-    return fetchedNotes;
+    //return fetchedNotes;
   }
 
   // Implement other database operations as needed
