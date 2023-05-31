@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:my_fight_companion/database_helper.dart';
 
 class NoteCreationPage extends StatefulWidget {
   const NoteCreationPage({Key? key}) : super(key: key);
@@ -56,9 +57,17 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
           ],
         ),
       ),
-    floatingActionButton: FloatingActionButton(onPressed: (){},
-    tooltip: 'Save',
-    child: const Icon(Icons.sailing),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+// Get the entered note from the TextField
+          //final note = _NoteCreationPageState.;
+
+          // Save the note to the database
+          DatabaseHelper().saveNote("note");
+        },
+        tooltip: 'Save',
+        child: const Icon(Icons.sailing),
+      ),
     );
   }
 }
