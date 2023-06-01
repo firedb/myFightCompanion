@@ -40,15 +40,11 @@ class DatabaseHelper {
     final db = await database;
 
     Map<String, Object?> mapExample = {
-      "title": "placeholder title",
-      "notestuff": "placeholder note content",
+      "notetitle": "placeholder title",
+      "notecontent": note,
       "date": 45,
     };
-    mapExample = {
-      "title": "placeholder title",
-      "notestuff": "placeholder note content",
-      "date": 45,
-    };
+    
 
     await db?.insert('testbase', mapExample);
   }
