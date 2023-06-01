@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:my_fight_companion/database_helper.dart';
+//import 'package:sqflite/sqflite.dart';
 
 class NoteCreationPage extends StatefulWidget {
   const NoteCreationPage({Key? key}) : super(key: key);
@@ -9,6 +10,14 @@ class NoteCreationPage extends StatefulWidget {
 }
 
 class _NoteCreationPageState extends State<NoteCreationPage> {
+  final TextEditingController _noteContentController = TextEditingController();
+
+  @override
+  void dispose() {
+    _noteContentController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,18 +30,20 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
-            Text(
+          children: <Widget>[
+            const Text(
               'This is a new note!',
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Expanded(
               child: SingleChildScrollView(
                 child: TextField(
+                  controller:
+                      _noteContentController, // Attach the controller - lets me grab text from a variable name
                   maxLines: null, // Allow unlimited lines of text
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     floatingLabelAlignment: FloatingLabelAlignment.center,
                     hintText: 'Type here...',
@@ -56,9 +67,15 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
           ],
         ),
       ),
-    floatingActionButton: FloatingActionButton(onPressed: (){},
-    tooltip: 'Save',
-    child: const Icon(Icons.sailing),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (_noteContentController.text.isNotEmpty) {
+            DatabaseHelper().saveNote(_noteContentController.text);
+          }
+        },
+        tooltip: 'Save',
+        child: const Icon(Icons.sailing),
+      ),
     );
   }
 }
