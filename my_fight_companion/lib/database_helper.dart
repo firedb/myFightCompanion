@@ -22,17 +22,17 @@ class DatabaseHelper {
     // and other options as per your requirement
 
     String dbPath = await getDatabasesPath();
-    String pathToDatabase = path.join(dbPath, 'testbase.db');
+    String pathToDatabase = path.join(dbPath, 'newtestbase.db');
 
     return await openDatabase(pathToDatabase, version: 1,
         onCreate: (Database db, int version) async {
       // When creating the db, create the table
       await db.execute(
-          'CREATE TABLE testbase (id INTEGER PRIMARY KEY, notetitle TEXT, notecontent TEXT, date INTEGER)');
+          'CREATE TABLE newtestbase (id INTEGER PRIMARY KEY, notetitle TEXT, notecontent TEXT, date DATE)');
       await db.execute(
-          'INSERT INTO testbase (notetitle, notecontent, date) VALUES("Title Here", "Your content here..", 01011980)');
+          'INSERT INTO newtestbase (notetitle, notecontent, date) VALUES("Title Here", "Your content here..", "2023-06-06")');
       await db.execute(
-          'INSERT INTO testbase (notetitle, notecontent, date) VALUES("2nd Title Here", "2nd Your content here..", 02021980)');
+          'INSERT INTO newtestbase (notetitle, notecontent, date) VALUES("2nd Title Here", "2nd Your content here..", "2023-06-06")');
     });
   }
 
@@ -42,16 +42,18 @@ class DatabaseHelper {
     Map<String, Object?> mapExample = {
       "notetitle": "placeholder title",
       "notecontent": note,
-      "date": 45,
+      "date": DateTime.now().toString(),
+      
+      
     };
     
 
-    await db?.insert('testbase', mapExample);
+    await db?.insert('newtestbase', mapExample);
   }
 
   Future<List<Map<String, dynamic>>?> getNotes() async {
     final db = await database;
-    List<Map<String, dynamic>>? noteList = await db?.query('testbase');
+    List<Map<String, dynamic>>? noteList = await db?.query('newtestbase');
     return noteList;
     //List<String> fetchedNotes =
     //    noteList!.map((note) => note['notecontent'] as String).toList();
