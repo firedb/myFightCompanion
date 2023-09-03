@@ -36,11 +36,11 @@ class DatabaseHelper {
     });
   }
 
-  Future<void> saveNote(String note) async {
+  Future<void> saveNote(String title, String note) async {
     final db = await database;
 
     Map<String, Object?> mapExample = {
-      "notetitle": "placeholder title",
+      "notetitle": title,
       "notecontent": note,
       "date": DateTime.now().toString(),
     };

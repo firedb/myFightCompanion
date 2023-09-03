@@ -11,10 +11,12 @@ class NoteCreationPage extends StatefulWidget {
 
 class _NoteCreationPageState extends State<NoteCreationPage> {
   final TextEditingController _noteContentController = TextEditingController();
+  final TextEditingController _noteTitleController = TextEditingController();
 
   @override
   void dispose() {
     _noteContentController.dispose();
+    _noteTitleController.dispose();
     super.dispose();
   }
 
@@ -38,6 +40,33 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
             const SizedBox(height: 8),
             Expanded(
               child: SingleChildScrollView(
+                  child: TextField(
+                controller: _noteTitleController,
+                maxLines: null,
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  floatingLabelAlignment: FloatingLabelAlignment.center,
+                  //hintText: 'Type here...',
+                  labelText: 'New Note Title',
+                  labelStyle: TextStyle(
+                    color: Colors.cyanAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  filled: true,
+                  fillColor: Colors.black, // Set background color
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyanAccent, width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyanAccent, width: 1.0),
+                  ),
+                ),
+              )),
+            ),
+            const SizedBox(height: 8,),
+            Expanded(
+              child: SingleChildScrollView(
                 child: TextField(
                   controller:
                       _noteContentController, // Attach the controller - lets me grab text from a variable name
@@ -46,7 +75,7 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     floatingLabelAlignment: FloatingLabelAlignment.center,
-                    hintText: 'Type here...',
+                    //hintText: 'Type here...',
                     labelText: 'New Note',
                     labelStyle: TextStyle(
                       color: Colors.cyan,
@@ -69,10 +98,33 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_noteContentController.text.isNotEmpty) {
-            DatabaseHelper().saveNote(_noteContentController.text);
+          try{
+          if (_noteContentController.text.isNotEmpty && _noteTitleController.text.isNotEmpty) {
+            DatabaseHelper().saveNote(_noteTitleController.text,_noteContentController.text);
+            showDialog(context: context, 
+            builder: (context) => const AlertDialog(
+              title: Text('Saved Successfully')
+              ),
+              );
+          }else{
+            showDialog(context: context, 
+            builder: (context) => const AlertDialog(
+              title: Text('Text or Title is missing')
+              ),
+              );
           }
-        },
+        }
+        on Exception catch(_){
+          showDialog(context: context, 
+            builder: (context) => const AlertDialog(
+              title: Text('Some Exception Occured - Alert Developer')
+              ),
+              );
+        }
+
+        }
+        
+        ,
         tooltip: 'Save',
         child: const Icon(Icons.sailing),
       ),
