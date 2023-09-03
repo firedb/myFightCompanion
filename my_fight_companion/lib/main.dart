@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 import 'package:my_fight_companion/note_creation.dart';
 import 'note_list.dart';
 
@@ -47,18 +47,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  //int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //     _counter++;
+  //   });
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                    //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Character M.U.',
                       )),
@@ -141,7 +142,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Player M.U.',
                       )),
@@ -154,7 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Drafts',
                       )),
@@ -162,7 +165,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Combo List',
                       )),
@@ -170,7 +174,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         textAlign: TextAlign.center,
                         'Tech Mechanics',
@@ -184,7 +189,8 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Custom',
                       )),
@@ -192,7 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Custom',
                       )),
@@ -200,7 +207,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: _incrementCounter,
+                      //TODO Press
+                    onPressed: (){},
                       child: const Text(
                         'Custom',
                       )),
