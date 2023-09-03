@@ -11,9 +11,8 @@ class NoteListPage extends StatefulWidget {
 }
 
 class _NoteListPageState extends State<NoteListPage> {
-
 //dynamic vs object. Using dynamic for now, but should opt for a safer statically typed
-List<Map<String, dynamic>>? notes = [];
+  List<Map<String, dynamic>>? notes = [];
 
   @override
   void initState() {
@@ -30,16 +29,13 @@ List<Map<String, dynamic>>? notes = [];
     });
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Page'),
       ),
-       body: Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -48,7 +44,7 @@ List<Map<String, dynamic>>? notes = [];
               style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 16),
-             Expanded(
+            Expanded(
               child: ListView.builder(
                 itemCount: notes?.length,
                 itemBuilder: (context, index) {
@@ -58,11 +54,17 @@ List<Map<String, dynamic>>? notes = [];
                   String date = notes![index]['date'].toString();
 
                   return ListTile(
+                    shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: Colors.tealAccent, width: 1,),
+                    borderRadius: BorderRadius.circular(19),
+                    ),
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title, style: const TextStyle(color: Colors.white)),
-                        Text(content, style: const TextStyle(color: Colors.white)),
+                        Text(title,
+                            style: const TextStyle(color: Colors.white)),
+                        Text(content,
+                            style: const TextStyle(color: Colors.white)),
                         Text(date, style: const TextStyle(color: Colors.white)),
                       ],
                     ),
