@@ -43,10 +43,7 @@ class DatabaseHelper {
       "notetitle": "placeholder title",
       "notecontent": note,
       "date": DateTime.now().toString(),
-      
-      
     };
-    
 
     await db?.insert('newtestbase', mapExample);
   }
