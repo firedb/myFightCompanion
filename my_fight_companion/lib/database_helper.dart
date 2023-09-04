@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as path;
 
@@ -36,16 +38,31 @@ class DatabaseHelper {
     });
   }
 
-  Future<void> saveNote(String title, String note) async {
+//TODO needs a try catch around the await database
+
+  Future<int> saveNote(String title, String note, int id) async {
     final db = await database;
 
-    Map<String, Object?> mapExample = {
-      "notetitle": title,
-      "notecontent": note,
-      "date": DateTime.now().toString(),
-    };
-
-    await db?.insert('newtestbase', mapExample);
+    if (id == -1) {
+      Map<String, dynamic> mapExample = {
+        "notetitle": title,
+        "notecontent": note,
+        "date": DateTime.now().toString(),
+      };
+      final newId = await db?.insert('newtestbase', mapExample);
+      return newId ?? -1; // Return the new ID or -1 if it's null
+    } else {
+      Map<String, dynamic> mapExample = {
+        "notetitle": title,
+        "notecontent": note,
+        "date": DateTime.now().toString(),
+      };
+      final rowsAffected = await db
+          ?.update('newtestbase', mapExample, where: 'id = ?', whereArgs: [id]);
+      return rowsAffected == 1
+          ? id
+          : -1; // Return the updated ID or -1 if not updated
+    }
   }
 
   Future<List<Map<String, dynamic>>?> getNotes() async {

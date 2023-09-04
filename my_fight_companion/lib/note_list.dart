@@ -52,6 +52,8 @@ class _NoteListPageState extends State<NoteListPage> {
                   String title = notes![index]['notetitle'];
                   String content = notes![index]['notecontent'];
                   String date = notes![index]['date'].toString();
+                  String noteID = notes![index]['id'].toString();
+
 
                   return ListTile(
                     shape: RoundedRectangleBorder(
@@ -66,6 +68,8 @@ class _NoteListPageState extends State<NoteListPage> {
                         Text(content,
                             style: const TextStyle(color: Colors.white)),
                         Text(date, style: const TextStyle(color: Colors.white)),
+                        Text(noteID,
+                            style: const TextStyle(color: Colors.redAccent)),
                       ],
                     ),
                   );

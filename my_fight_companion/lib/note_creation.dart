@@ -12,6 +12,7 @@ class NoteCreationPage extends StatefulWidget {
 class _NoteCreationPageState extends State<NoteCreationPage> {
   final TextEditingController _noteContentController = TextEditingController();
   final TextEditingController _noteTitleController = TextEditingController();
+  int noteID = -1;
 
   @override
   void dispose() {
@@ -33,8 +34,8 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Text(
-              'This is a new note!',
+            Text(
+              'Note ID: ${noteID.toString()}',
               style: TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 8),
@@ -56,15 +57,19 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
                   filled: true,
                   fillColor: Colors.black, // Set background color
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent, width: 1.0),
+                    borderSide:
+                        BorderSide(color: Colors.cyanAccent, width: 1.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent, width: 1.0),
+                    borderSide:
+                        BorderSide(color: Colors.cyanAccent, width: 1.0),
                   ),
                 ),
               )),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Expanded(
               child: SingleChildScrollView(
                 child: TextField(
@@ -97,34 +102,39 @@ class _NoteCreationPageState extends State<NoteCreationPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          try{
-          if (_noteContentController.text.isNotEmpty && _noteTitleController.text.isNotEmpty) {
-            DatabaseHelper().saveNote(_noteTitleController.text,_noteContentController.text);
-            showDialog(context: context, 
-            builder: (context) => const AlertDialog(
-              title: Text('Saved Successfully')
-              ),
-              );
-          }else{
-            showDialog(context: context, 
-            builder: (context) => const AlertDialog(
-              title: Text('Text or Title is missing')
-              ),
-              );
-          }
-        }
-        on Exception catch(_){
-          showDialog(context: context, 
-            builder: (context) => const AlertDialog(
-              title: Text('Some Exception Occured - Alert Developer')
-              ),
-              );
-        }
+        onPressed: () async {
+          try {
+            if (_noteContentController.text.isNotEmpty &&
+                _noteTitleController.text.isNotEmpty) {
+              noteID = await DatabaseHelper().saveNote(
+                  _noteTitleController.text,
+                  _noteContentController.text,
+                  noteID);
 
-        }
-        
-        ,
+              showDialog(
+                context: context,
+                builder: (context) =>
+                    const AlertDialog(title: Text('Saved Successfully')),
+              );
+
+              setState(() {
+                
+              });
+            } else {
+              showDialog(
+                context: context,
+                builder: (context) =>
+                    const AlertDialog(title: Text('Text or Title is missing')),
+              );
+            }
+          } on Exception catch (_) {
+            showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                  title: Text('Some Exception Occured - Alert Developer')),
+            );
+          }
+        },
         tooltip: 'Save',
         child: const Icon(Icons.sailing),
       ),
